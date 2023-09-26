@@ -1,6 +1,5 @@
 package com.joel.br.backstore.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +8,8 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+
 import java.time.Instant;
-import java.util.List;
 
 @Entity
 @Table
@@ -18,18 +17,17 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PermissionP {
+public class ImageProduct {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
 
-
-    @ManyToMany
-    @JoinTable(name = "person_permission", joinColumns = @JoinColumn(name = "permission_id"), inverseJoinColumns = @JoinColumn(name = "person_id"))
-    @JsonIgnore
-    private List<Person> person;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
+    private Product product;
 
 
 
@@ -37,7 +35,5 @@ public class PermissionP {
     private Instant createdAt;
     @UpdateTimestamp
     private Instant  updatedAt;
-
-
 
 }
