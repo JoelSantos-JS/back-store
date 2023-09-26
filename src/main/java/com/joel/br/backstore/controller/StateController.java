@@ -2,6 +2,7 @@ package com.joel.br.backstore.controller;
 
 import com.joel.br.backstore.model.State;
 import com.joel.br.backstore.services.StateService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +32,7 @@ public class StateController {
 
     @PostMapping
     public ResponseEntity<State> save(@RequestBody  State state) {
-        return ResponseEntity.ok().body(stateService.save(state));
+        return ResponseEntity.status(HttpStatus.CREATED).body(stateService.save(state));
     }
 
 
@@ -44,7 +45,9 @@ public class StateController {
 
     @DeleteMapping
     ("/{id}")
-    public void delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         stateService.delete(id);
+
+        return ResponseEntity.noContent().build();
     }
 }
