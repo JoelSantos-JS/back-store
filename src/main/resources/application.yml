@@ -1,5 +1,23 @@
 # Spring Boot configuration
 spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: letoxytv@gmail.com
+    password: cugvelcbeuehxvsw
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+        ssl:
+          enable: false
+    test-connection: true
+    verify:
+      host: http://localhost:8080
+
   flyway:
     baseline-on-migrate: true
   profiles:

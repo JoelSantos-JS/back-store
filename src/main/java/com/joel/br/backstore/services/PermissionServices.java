@@ -60,7 +60,14 @@ public class PermissionServices implements PermissionImpl {
     @Transactional
     public void  giverPermission(Long id, Long idPerson) {
         PermissionP permissionP = findById(id);
+        if(permissionP == null ) {
+            throw  new RuntimeException("Permission not found");
+        }
+
         Person person = personRepository.findById(idPerson).get();
+        if(person == null ) {
+            throw  new RuntimeException("Person not found");
+        }
 
         permissionP.getPerson().add(person);
 
@@ -69,8 +76,13 @@ public class PermissionServices implements PermissionImpl {
     @Transactional
     public void  removePermission(Long id, Long idPerson) {
         PermissionP permissionP = findById(id);
+        if(permissionP == null ) {
+            throw  new RuntimeException("Permission not found");
+        }
         Person person = personRepository.findById(idPerson).get();
-
+        if(person == null ) {
+            throw  new RuntimeException("Person not found");
+        }
         permissionP.getPerson().remove(person);
 
     }

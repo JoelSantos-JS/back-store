@@ -21,13 +21,13 @@ public class PermissionPersonControler {
 
 
 
-    @PutMapping(value = "/{idPerson}")
+    @PostMapping(value = "/{idPerson}")
     public ResponseEntity<Void> givePermission(@PathVariable Long idPermission, @PathVariable Long idPerson ){
             permissionServices.giverPermission(idPermission, idPerson);
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping(value = "/{idPerson}")
+    @DeleteMapping(value = "/{idPerson}")
     public ResponseEntity<Void> revokePermission(@PathVariable Long idPermission, @PathVariable Long idPerson ){
         permissionServices.removePermission(idPermission, idPerson);
         return ResponseEntity.noContent().build();

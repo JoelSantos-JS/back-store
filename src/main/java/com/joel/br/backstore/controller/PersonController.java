@@ -1,5 +1,6 @@
 package com.joel.br.backstore.controller;
 
+import com.joel.br.backstore.dto.PersonDTO;
 import com.joel.br.backstore.model.Person;
 import com.joel.br.backstore.model.Product;
 import com.joel.br.backstore.services.PersonService;
@@ -29,7 +30,8 @@ public class PersonController {
         return ResponseEntity.ok().body(personService.findById(id));
     }
     @PostMapping
-    public ResponseEntity<Person> save(@RequestBody Person person) {
+    public ResponseEntity<Person> save(@RequestBody PersonDTO person) {
+
         return ResponseEntity.ok().body(personService.save(person));
     }
 
